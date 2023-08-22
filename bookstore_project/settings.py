@@ -29,11 +29,11 @@ ALLOWED_HOSTS = ['*']
 
 
 
-SWAGGER_SETTINGS = {
-    'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
-    'DEFAULT_INFO': 'bookstore_project.urls.schema_view',
+#SWAGGER_SETTINGS = {
+    #'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
+    #'DEFAULT_INFO': 'bookstore_project.urls.schema_view',
     
-}
+#}
 
 
 
@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookstore_app','rest_framework',
     'rest_framework.authtoken',
-    'drf_yasg','rest_framework_swagger'
+    'drf_yasg',
+    #'rest_framework_swagger'
 ]
 
 MIDDLEWARE = [
