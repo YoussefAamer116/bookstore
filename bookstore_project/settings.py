@@ -29,11 +29,11 @@ ALLOWED_HOSTS = ['*']
 
 
 
-#SWAGGER_SETTINGS = {
-    #'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
-    #'DEFAULT_INFO': 'bookstore_project.urls.schema_view',
+SWAGGER_SETTINGS = {
+    'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
+    'DEFAULT_INFO': 'bookstore_project.urls.schema_view',
     
-#}
+}
 
 
 
