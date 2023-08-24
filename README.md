@@ -164,7 +164,7 @@ You can use Postman to interact with the Bookstore API and test its endpoints. F
 1. [Download and Install Postman](https://www.postman.com/downloads/): If you don't already have Postman installed on your system, you can download it from the official website.
 
 2. Import the Postman Collection:
-   - Download the [Bookstore API Postman Collection](link-to-your-collection).
+   - Download the [Bookstore_test collection](https://api.postman.com/collections/29234170-0e5d0014-7f2c-48dc-b977-681479235fe7?access_key=PMAT-01H8M7RJS3YKC0CB8MTW5CM3CV).
    - Open Postman and click the "Import" button in the top left corner.
    - Select the downloaded collection file (JSON format) and click "Open."
 
