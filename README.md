@@ -9,7 +9,8 @@ This is the Bookstore API, a Django-based web API for managing books, authors, a
 - [Bookstore API Documentation](#bookstore-api-documentation)
 - [Setup Instructions](#setup-instructions)
 - [Contributing](#contributing)
-- [License](#license)
+- [Postman](#Testing_with_Postman)
+
 
 ## Overview
 
@@ -36,9 +37,62 @@ pip install django
 pip install djangorestframework
 
 ```
+### Installation
+- Clone the repository to your local machine:
+```bash
+git clone https://github.com/YoussefAamer116/bookstore.git
+```
+- Navigate to the project directory:
+```bash
+cd bookstore
+```
+- Create and activate a virtual environment (optional but recommended):
+```bash
+python -m venv venv
+```
+- Install the project dependencies:
+```bash  
+pip install -r requirements.txt
+```
+- Apply the database migrations:
+```bash
+python manage.py migrate
+```
+- Create a superuser account (an admin account) to access the Django admin panel:
+```bash
+python manage.py createsuperuser
+```
+- Start the development server:
+```bash
+python manage.py runserver
+```
 
+### Second Method: 
+  Follow these instructions to set up and run the Bookstore API from accessing AWS server(EC2 Instance).
 
- # Bookstore API Documentation
+- Download the private key file named bookstore_key.pem.
+
+- Open a command prompt and run the following command to access the AWS EC2 instance:
+
+```bash
+ssh -i "path/of/the/file/bookstore_key.pem" ubuntu@13.48.149.66
+```
+- Once you are connected to the Ubuntu server, navigate to the project directory:
+
+```bash
+cd bookstore
+```
+- Activate the virtual environment:
+```bash
+source venv_bookstore/bin/activate
+```
+- Run the server:
+```bash
+python manage.py runserver 0.0.0.0:8000
+  ```
+These instructions will help you set up and run the Bookstore API both locally and on an AWS EC2 instance. Make sure to replace "path/of/the/file\bookstore_key.pem" with the actual path to your private key file.
+
+# Bookstore API Documentation
 
 This API documentation provides details about the endpoints, request methods, authentication, and usage of the Bookstore API.
 
@@ -107,6 +161,45 @@ To access certain endpoints, you need to be authenticated. Use the following end
 
 To access authenticated endpoints, include the obtained authentication token in your request headers.
 
+## Testing_with_Postman
+
+You can use Postman to interact with the Bookstore API and test its endpoints. Follow these steps to get started:
+
+1. [Download and Install Postman](https://www.postman.com/downloads/): If you don't already have Postman installed on your system, you can download it from the official website.
+
+2. Import the Postman Collection:
+   - Download the [Bookstore API Postman Collection](link-to-your-collection).
+   - Open Postman and click the "Import" button in the top left corner.
+   - Select the downloaded collection file (JSON format) and click "Open."
+
+3. Set Up Environment Variables (Optional):
+   - You can create environment variables to store the API base URL if you plan to test against different environments (e.g., local, staging, production).
+   - Click the gear icon in the top right corner, then click "Add" to create a new environment.
+   - Define a variable called `base_url` and set its value to your API's base URL (e.g., `http://localhost:8000`).
+
+4. Start Making Requests:
+   - Open the imported collection in Postman.
+   - Use the predefined requests to interact with the API endpoints.
+   - If you set up environment variables, make sure to select the correct environment for your requests.
+
+5. Run Tests:
+   - Some requests in the collection may include tests that verify the API's behavior.
+   - Click the "Send" button to execute a request, and check the test results in the response.
+
+6. Explore and Customize:
+   - Feel free to explore and customize the requests in the collection to suit your testing needs.
+   - You can add new requests or modify existing ones as required.
+
+By using Postman, you can efficiently test and interact with the Bookstore API, making it easier to develop and debug your applications.
+
+
+
+
 ## Usage
 
 To use the API, follow the authentication process and make requests to the relevant endpoints based on your requirements. Be sure to check the Swagger or drf-yasg-generated documentation for detailed request/response formats and examples.
+
+
+## Contributing
+
+If you'd like to contribute to this project, please follow our Contributing Guidelines.
