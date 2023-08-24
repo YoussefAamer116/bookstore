@@ -58,10 +58,6 @@ pip install -r requirements.txt
 ```bash
 python manage.py migrate
 ```
-- Create a superuser account (an admin account) to access the Django admin panel:
-```bash
-python manage.py createsuperuser
-```
 - Start the development server:
 ```bash
 python manage.py runserver
