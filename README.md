@@ -21,7 +21,8 @@ For detailed information on how to use the API, refer to the [API Documentation]
 
 ## Setup Instructions
 
-Follow these instructions to set up and run the Bookstore API locally.
+### First Method: 
+  Follow these instructions to set up and run the Bookstore API locally.
 
 ### Prerequisites
 
@@ -31,8 +32,10 @@ Before you begin, ensure you have met the following requirements:
 - Django and Django REST framework installed. You can install them using pip:
 
 ```bash
-pip install django djangorestframework
+pip install django
+pip install djangorestframework
 
+```
 
 
  # Bookstore API Documentation
