@@ -6,19 +6,16 @@ This is the Bookstore API, a Django-based web API for managing books, authors, a
 ## Table of Contents
 
 - [Overview](#overview)
-- [Bookstore API Documentation](#bookstore-api-documentation)
 - [Setup Instructions](#setup-instructions)
-- [Contributing](#contributing)
 - [Postman](#Testing_with_Postman)
+- [Contributing](#contributing)
+
 
 
 ## Overview
 
 The Bookstore API allows you to perform CRUD (Create, Read, Update, Delete) operations on books, authors, and categories. It also includes user registration and authentication features. You can use this API to build applications like online bookstores, library management systems, and more.
 
-## Bookstore API Documentation
-
-For detailed information on how to use the API, refer to the [API Documentation](#bookstore-api-documentation) section in the [API.md](API.md) file.
 
 ## Setup Instructions
 
@@ -46,10 +43,6 @@ git clone https://github.com/YoussefAamer116/bookstore.git
 ```bash
 cd bookstore
 ```
-- Create and activate a virtual environment (optional but recommended):
-```bash
-python -m venv venv
-```
 - Install the project dependencies:
 ```bash  
 pip install -r requirements.txt
@@ -57,6 +50,10 @@ pip install -r requirements.txt
 - Apply the database migrations:
 ```bash
 python manage.py migrate
+```
+- Activate a virtual environment (optional but recommended):
+```bash
+venv_bookstore\Scripts\activate
 ```
 - Start the development server:
 ```bash
@@ -66,7 +63,7 @@ python manage.py runserver
 ### Second Method: 
   Follow these instructions to set up and run the Bookstore API from accessing AWS server(EC2 Instance).
 
-- Download the private key file named bookstore_key.pem.
+- Download the private key file named bookstore_key.pem(from GitHub repository).
 
 - Open a command prompt and run the following command to access the AWS EC2 instance:
 
@@ -86,7 +83,7 @@ source venv_bookstore/bin/activate
 ```bash
 python manage.py runserver 0.0.0.0:8000
   ```
-These instructions will help you set up and run the Bookstore API both locally and on an AWS EC2 instance. Make sure to replace "path/of/the/file\bookstore_key.pem" with the actual path to your private key file.
+These instructions will help you set up and run the Bookstore API on an AWS EC2 instance. Make sure to replace "path/of/the/file\bookstore_key.pem" with the actual path to your private key file.
 
 # Bookstore API Documentation
 
