@@ -12,6 +12,7 @@ from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, U
 from django.contrib.auth.views import LoginView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework import status
 
 class AuthorViewSet(viewsets.ModelViewSet):
     """
@@ -20,12 +21,52 @@ class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: AuthorSerializer(many=True),
+            status.HTTP_201_CREATED: AuthorSerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_403_FORBIDDEN: "Forbidden",
+            status.HTTP_404_NOT_FOUND: "Not Found",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
+        operation_description="API endpoint that allows authors to be viewed or edited",
+    )
+    def list(self, request, *args, **kwargs):
+        """
+        List all authors.
+        """
+        return super().list(request, *args, **kwargs)
+
+    # Define similar @swagger_auto_schema decorators for other methods (create, retrieve, update, destroy)
+
 class CategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows categories to be viewed or edited.
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: CategorySerializer(many=True),
+            status.HTTP_201_CREATED: CategorySerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_403_FORBIDDEN: "Forbidden",
+            status.HTTP_404_NOT_FOUND: "Not Found",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
+        operation_description="API endpoint that allows categories to be viewed or edited",
+    )
+    def list(self, request, *args, **kwargs):
+        """
+        List all categories.
+        """
+        return super().list(request, *args, **kwargs)
+
+    # Define similar @swagger_auto_schema decorators for other methods (create, retrieve, update, destroy)
 
 class CustomPagination(PageNumberPagination):
     page_size = 10
@@ -45,8 +86,16 @@ class BookViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'description']
 
     @swagger_auto_schema(
-        responses={200: BookSerializer(many=True)},
-        operation_description="List all books with pagination and filtering",
+        responses={
+            status.HTTP_200_OK: BookSerializer(many=True),
+            status.HTTP_201_CREATED: BookSerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_403_FORBIDDEN: "Forbidden",
+            status.HTTP_404_NOT_FOUND: "Not Found",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
+        operation_description="API endpoint that allows books to be viewed or edited",
     )
     def list(self, request, *args, **kwargs):
         """
@@ -56,7 +105,13 @@ class BookViewSet(viewsets.ModelViewSet):
 
     @swagger_auto_schema(
         request_body=BookSerializer,
-        responses={201: BookSerializer()},
+        responses={
+            status.HTTP_201_CREATED: BookSerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_403_FORBIDDEN: "Forbidden",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
         operation_description="Create a new book",
     )
     def create(self, request, *args, **kwargs):
@@ -66,10 +121,17 @@ class BookViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status=201)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @swagger_auto_schema(
-        responses={200: BookSerializer()},
+        responses={
+            status.HTTP_200_OK: BookSerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_403_FORBIDDEN: "Forbidden",
+            status.HTTP_404_NOT_FOUND: "Not Found",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
         operation_description="Retrieve a book by ID",
     )
     def retrieve(self, request, *args, **kwargs):
@@ -80,7 +142,14 @@ class BookViewSet(viewsets.ModelViewSet):
 
     @swagger_auto_schema(
         request_body=BookSerializer,
-        responses={200: BookSerializer()},
+        responses={
+            status.HTTP_200_OK: BookSerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_403_FORBIDDEN: "Forbidden",
+            status.HTTP_404_NOT_FOUND: "Not Found",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
         operation_description="Update a book by ID",
     )
     def update(self, request, *args, **kwargs):
@@ -90,7 +159,14 @@ class BookViewSet(viewsets.ModelViewSet):
         return super().update(request, *args, **kwargs)
 
     @swagger_auto_schema(
-        responses={204: None},
+        responses={
+            status.HTTP_204_NO_CONTENT: "No Content",
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_403_FORBIDDEN: "Forbidden",
+            status.HTTP_404_NOT_FOUND: "Not Found",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
         operation_description="Delete a book by ID",
     )
     def destroy(self, request, *args, **kwargs):
@@ -142,16 +218,42 @@ class UserRegistrationView(generics.CreateAPIView):
     """
     serializer_class = UserSerializer
 
+    @swagger_auto_schema(
+        request_body=UserSerializer,
+        responses={
+            status.HTTP_201_CREATED: UserSerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
+        operation_description="Register a new user",
+    )
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)  
         user = serializer.save()
-        return Response({'user_id': user.id, 'username': user.username}, status=201)
+        return Response({'user_id': user.id, 'username': user.username}, status=status.HTTP_201_CREATED)
 
 class UserLoginView(ObtainAuthToken):
     """
     API endpoint that allows user login.
     """
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'username': openapi.Schema(type=openapi.TYPE_STRING, description='Username'),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, description='Password'),
+            },
+            required=['username', 'password'],
+        ),
+        responses={
+            status.HTTP_200_OK: UserSerializer(),
+            status.HTTP_400_BAD_REQUEST: "Bad Request",
+            status.HTTP_401_UNAUTHORIZED: "Unauthorized",
+            status.HTTP_500_INTERNAL_SERVER_ERROR: "Internal Server Error",
+        },
+        operation_description="Log in with a user account",
+    )
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         if serializer.is_valid():
@@ -164,4 +266,4 @@ class UserLoginView(ObtainAuthToken):
                 'token': token.key,
             })
         else:
-            return Response(serializer.errors, status=400)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
