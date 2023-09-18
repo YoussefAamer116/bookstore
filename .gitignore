@@ -1,0 +1,38 @@
+# Ignore environment files
+*.env
+
+# Ignore Python bytecode files
+__pycache__/
+
+# Ignore database files
+db.sqlite3
+
+# Ignore media and static files (adjust paths if needed)
+media/
+static/
+
+# Ignore IDE-specific files (adjust if you use a different IDE)
+.vscode/
+.idea/
+
+# Ignore generated migration files (adjust if needed)
+**/migrations/*.py
+**/migrations/*.pyc
+
+# Ignore local settings (adjust if you use different settings files)
+local_settings.py
+
+# Ignore pycache
+__pycache__/
+*.pyc
+
+# Ignore system files that might be created on macOS
+.DS_Store
+
+# Ignore logs and temporary files
+*.log
+*.swp
+
+# Ignore virtual environment folders
+venv/
+env/
